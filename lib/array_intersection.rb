@@ -2,21 +2,24 @@
 def intersection(array1, array2)
   return [] if array1.nil? || array2.nil? || array1.empty? || array2.empty?
 
-  length1 = array1.length
-  length2 = array2.length
+  if array1.length < array2.length
+    return get_intersection(array1, array2)
+  else
+    return get_intersection(array2, array1)
+  end
+end
 
+def get_intersection(shorter_array, longer_array)
 
+  hh = {}
+  shorter_array.each do |num|
+    hh[num] = 0
+  end
 
-    hh = {}
-    array1.each do |num|
-      hh[num] = 0
-    end
-
-    intersect = []
-    array2.each do |num|
-      intersect << num if hh[num]
-    end
-
+  intersect = []
+  longer_array.each do |num|
+    intersect << num if hh[num]
+  end
 
   return intersect
 
